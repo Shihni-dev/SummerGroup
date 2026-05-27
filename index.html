@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 夏日家庭露營 🏕️ | SRC 北埔</title>
+  <style>
+    :root {
+      --green-dark:   #2D5A3D;
+      --green:        #3D6B4A;
+      --green-mid:    #5A8A68;
+      --green-light:  #EDF4EE;
+      --sage:         #7A9265;
+      --amber:        #D4A853;
+      --amber-light:  #FFF8E6;
+      --bg:           #F7F3EC;
+      --white:        #FFFFFF;
+      --border:       #C8DBC4;
+      --text:         #2A3828;
+      --text-muted:   #5A6B58;
+      --shadow:       0 2px 12px rgba(45,90,61,.09);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Noto Sans TC", "PingFang TC", "微軟正黑體", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(45,90,61,.95);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      font-size: 0.82rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      transition: background .2s;
+    }
+    nav a:hover { background: rgba(255,255,255,.2); color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(155deg, #1e4230 0%, #3D6B4A 55%, #6b9e78 100%);
+      color: white;
+      text-align: center;
+      padding: 80px 20px 90px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 60px;
+      background: var(--bg);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero-trees {
+      font-size: 2.4rem;
+      letter-spacing: 4px;
+      margin-bottom: 18px;
+      opacity: .8;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.35);
+      padding: 5px 18px;
+      border-radius: 20px;
+      font-size: .8rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      opacity: .85;
+      margin-bottom: 36px;
+    }
+    .hero-chips {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-chip {
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.3);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: .9rem;
+      font-weight: 500;
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 56px 0; }
+    section.alt { background: var(--green-light); }
+
+    .sec-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .sec-rule {
+      width: 52px; height: 3px;
+      background: var(--amber);
+      border-radius: 3px;
+      margin-bottom: 28px;
+    }
+
+    /* ── INFO CARDS ── */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+    }
+    .info-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .info-card .ic { font-size: 2rem; margin-bottom: 9px; }
+    .info-card .lbl { font-size: .75rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 5px; }
+    .info-card .val { font-size: .97rem; font-weight: 700; color: var(--green); line-height: 1.5; }
+
+    /* ── VENUE ── */
+    .venue-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 22px;
+      align-items: flex-start;
+    }
+    .venue-card .vc-icon { font-size: 3.2rem; flex-shrink: 0; }
+    .venue-card h3 { font-size: 1.15rem; color: var(--green); margin-bottom: 8px; }
+    .venue-card p { font-size: .88rem; color: var(--text-muted); margin-bottom: 6px; line-height: 1.6; }
+    .pill-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--green);
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      background: var(--green-light);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      margin-top: 4px;
+      transition: background .2s;
+    }
+    .pill-link:hover { background: var(--border); }
+
+    /* ── TIMELINE ── */
+    .tl-day-hd {
+      background: var(--green);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: .97rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tl-items {
+      padding-left: 14px;
+      border-left: 3px solid var(--border);
+      margin-left: 10px;
+      margin-bottom: 32px;
+    }
+    .tl-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -20px; top: 7px;
+      width: 9px; height: 9px;
+      background: var(--amber);
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--amber);
+    }
+    .tl-time {
+      min-width: 52px;
+      font-size: .83rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding-top: 4px;
+    }
+    .tl-box {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 12px 16px;
+      flex: 1;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .tl-box .ev { font-weight: 700; margin-bottom: 3px; font-size: .95rem; }
+    .tl-box .desc { font-size: .84rem; color: var(--text-muted); }
+    .tag {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 6px;
+      font-size: .73rem;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+    .t-meal     { background: #FFF3E0; color: #BF5B00; }
+    .t-activity { background: #E8F5E9; color: #256029; }
+    .t-night    { background: #EDE7F6; color: #512DA8; }
+    .t-free     { background: #E3F2FD; color: #15559A; }
+
+    /* ── ACTIVITIES ── */
+    .act-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+      gap: 14px;
+    }
+    .act-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .act-card .ai { font-size: 1.9rem; margin-bottom: 9px; }
+    .act-card h4 { color: var(--green); margin-bottom: 5px; font-size: .97rem; }
+    .act-card p  { font-size: .84rem; color: var(--text-muted); }
+
+    /* ── EQUIPMENT ── */
+    .eq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .eq-cat {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .eq-cat h4 {
+      color: var(--green);
+      margin-bottom: 12px;
+      font-size: .93rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .eq-cat ul { list-style: none; }
+    .eq-cat li {
+      font-size: .86rem;
+      color: var(--text-muted);
+      padding: 5px 0;
+      border-bottom: 1px solid #F0F0EE;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .eq-cat li:last-child { border: none; }
+    .eq-cat li::before { content: '▸'; color: var(--amber); font-size: .7rem; }
+
+    /* ── MEALS ── */
+    .meal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+      gap: 16px;
+    }
+    .meal-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .meal-card .mh {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .meal-card .mi { font-size: 2rem; }
+    .meal-card h4 { font-size: 1.02rem; color: var(--green); }
+    .meal-card .mt { font-size: .78rem; color: var(--text-muted); }
+    .meal-suggestion {
+      font-size: .85rem;
+      color: var(--text-muted);
+      background: var(--green-light);
+      padding: 10px 13px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .claim-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .83rem;
+      color: var(--text-muted);
+    }
+    .badge-open {
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 700;
+      background: var(--amber-light);
+      color: #8B5E00;
+      border: 1.5px dashed var(--amber);
+    }
+    .badge-done {
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 700;
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    /* ── SURVEY BOX ── */
+    .survey-box {
+      background: linear-gradient(145deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      color: white;
+      border-radius: 22px;
+      padding: 44px 36px;
+      text-align: center;
+    }
+    .survey-box h3 { font-size: 1.55rem; margin-bottom: 10px; }
+    .survey-box .sdesc { opacity: .85; font-size: .95rem; margin-bottom: 30px; line-height: 1.7; }
+    .survey-steps {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+    .s-step {
+      background: rgba(255,255,255,.15);
+      border-radius: 14px;
+      padding: 14px 22px;
+      min-width: 130px;
+    }
+    .s-step .sn { font-size: 1.6rem; margin-bottom: 5px; }
+    .s-step .sl { font-size: .8rem; opacity: .9; }
+    .btn-survey {
+      display: inline-block;
+      background: var(--amber);
+      color: #2A3000;
+      padding: 15px 44px;
+      border-radius: 32px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(0,0,0,.25);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-survey:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    }
+    .survey-note { margin-top: 14px; font-size: .8rem; opacity: .65; }
+
+    /* ── NOTICE ── */
+    .notice {
+      display: grid;
+      gap: 12px;
+    }
+    .notice-item {
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: .9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border-left: 4px solid;
+    }
+    .ni-green  { background: #E8F5E9; border-color: #43A047; }
+    .ni-blue   { background: #E3F2FD; border-color: #1E88E5; }
+    .ni-yellow { background: var(--amber-light); border-color: var(--amber); }
+    .ni-red    { background: #FCE4EC; border-color: #E91E63; }
+
+    /* ── MEDIA ── */
+    .media-section { }
+    .venue-photo {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      display: block;
+      margin-bottom: 22px;
+      object-fit: cover;
+      max-height: 520px;
+    }
+    .venue-video-wrap {
+      background: #111;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,.18);
+    }
+    .venue-video-wrap video {
+      width: 100%;
+      display: block;
+      max-height: 480px;
+    }
+    .media-caption {
+      text-align: center;
+      font-size: .83rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1D2E1F;
+      color: rgba(255,255,255,.65);
+      text-align: center;
+      padding: 32px 20px;
+      font-size: .85rem;
+    }
+    footer strong { color: white; }
+    footer .flogo { font-size: 1.8rem; margin-bottom: 10px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 16px 80px; }
+      .survey-box { padding: 30px 20px; }
+      .venue-card { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#info">📋 活動資訊</a>
+  <a href="#venue">🏡 場地</a>
+  <a href="#media">📸 照片影片</a>
+  <a href="#schedule">🗓️ 行程</a>
+  <a href="#activities">🎯 活動</a>
+  <a href="#equipment">🎒 裝備</a>
+  <a href="#meals">🍽️ 餐食</a>
+  <a href="#survey">📝 認領</a>
+  <a href="#notes">📌 注意</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-trees">🌲🌿🏕️🌿🌲</div>
+  <div class="hero-badge">✦ 九個家庭的夏日記憶 ✦</div>
+  <h1>2026 夏日家庭露營</h1>
+  <p class="hero-sub">一起在北埔山林間留下美好時光</p>
+  <div class="hero-chips">
+    <div class="hero-chip">📅 8月22日（六）～ 8月23日（日）</div>
+    <div class="hero-chip">📍 SRC 北埔印象・露營車C區</div>
+    <div class="hero-chip">👨‍👩‍👧‍👦 9 個家庭 · 約 30–40 人</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- 活動基本資訊 -->
+  <section id="info">
+    <div class="container">
+      <h2 class="sec-title">📋 活動資訊</h2>
+      <div class="sec-rule"></div>
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="ic">📅</div>
+          <div class="lbl">活動日期</div>
+          <div class="val">8月22日（六）<br>至 8月23日（日）</div>
+        </div>
+        <div class="info-card">
+          <div class="ic">⏰</div>
+          <div class="lbl">集合 ／ 解散</div>
+          <div class="val">12:00 集合報到<br>13:30 退場解散</div>
+        </div>
+        <div class="info-card">
+          <div class="ic">📍</div>
+          <div class="lbl">活動地點</div>
+          <div class="val">SRC 北埔印象民宿<br>露營車C區（包場）</div>
+        </div>
+        <div class="info-card">
+          <div class="ic">👨‍👩‍👧‍👦</div>
+          <div class="lbl">參與家庭</div>
+          <div class="val">9 個家庭<br>約 30–40 人</div>
+        </div>
+        <div class="info-card">
+          <div class="ic">🚌</div>
+          <div class="lbl">住宿型態</div>
+          <div class="val">露營車包場<br>一夜兩日</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 場地介紹 -->
+  <section id="venue" class="alt">
+    <div class="container">
+      <h2 class="sec-title">🏡 場地介紹</h2>
+      <div class="sec-rule"></div>
+      <div class="venue-card">
+        <div class="vc-icon">🌲</div>
+        <div>
+          <h3>SRC 北埔印象民宿・露營車C區</h3>
+          <p>📍 新竹縣北埔鄉水磜村4鄰麻布樹排50號</p>
+          <p>☎️ 03-5805500 ｜ 0933-823310</p>
+          <p>
+            群山環繞的秘境場地，C區露營車為本次 9 個家庭包場使用，獨立享有戶外草地、公共休憩空間及餐廳設施，環境清幽、遠離都市喧囂，是親子同遊的絕佳選擇。
+          </p>
+          <a class="pill-link" href="https://src7377.ego.tw/" target="_blank">🔗 查看場地官網</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 場地照片 & 影片 -->
+  <section id="media">
+    <div class="container">
+      <h2 class="sec-title">📸 場地照片 ＆ 影片</h2>
+      <div class="sec-rule"></div>
+
+      <!-- 場地照片 -->
+      <img
+        src="assets/venue-photo.jpg"
+        alt="SRC 北埔印象・露營車C區場地照"
+        class="venue-photo"
+        onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';"
+      />
+      <div id="photo-placeholder" style="display:none; background:var(--green-light); border:2px dashed var(--border); border-radius:18px; padding:40px; text-align:center; margin-bottom:22px; flex-direction:column; align-items:center; gap:10px;">
+        <div style="font-size:2.5rem;">🖼️</div>
+        <div style="color:var(--text-muted); font-size:.9rem;">請將拼貼照片存為 <code>assets/venue-photo.jpg</code><br>即可在此顯示</div>
+      </div>
+      <p class="media-caption">SRC 北埔印象民宿・露營車C區｜室內空間 ／ 中庭泳池 ／ 戶外環境</p>
+
+      <!-- 場地影片 -->
+      <div style="margin-top: 28px;">
+        <div class="venue-video-wrap">
+          <video controls preload="metadata">
+            <source src="assets/venue-video.mp4" type="video/mp4">
+            您的瀏覽器不支援 HTML5 影片播放，請更新瀏覽器。
+          </video>
+        </div>
+        <p class="media-caption" style="margin-top:10px;">🎬 場地導覽影片（由民宿提供）</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 行程表 -->
+  <section id="schedule">
+    <div class="container">
+      <h2 class="sec-title">🗓️ 兩天一夜行程</h2>
+      <div class="sec-rule"></div>
+
+      <!-- Day 1 -->
+      <div class="tl-day-hd">☀️ Day 1 — 8月22日（六）</div>
+      <div class="tl-items">
+        <div class="tl-item">
+          <div class="tl-time">12:00</div>
+          <div class="tl-box">
+            <div class="ev">陸續抵達・報到</div>
+            <div class="desc">停車、場地導覽、安置個人物品</div>
+            <span class="tag t-free">🚗 報到</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">13:00</div>
+          <div class="tl-box">
+            <div class="ev">午餐（自理）</div>
+            <div class="desc">各自解決或附近餐廳，抵達後自由用餐</div>
+            <span class="tag t-meal">🍜 自理</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">14:30</div>
+          <div class="tl-box">
+            <div class="ev">下午戶外活動</div>
+            <div class="desc">水槍大戰、草地遊戲、孩子自由探索</div>
+            <span class="tag t-activity">🏃 活動時間</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">17:30</div>
+          <div class="tl-box">
+            <div class="ev">晚餐備料</div>
+            <div class="desc">負責家庭開始備料、炊事，其他人打打下手</div>
+            <span class="tag t-meal">🍳 認領餐</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">18:30</div>
+          <div class="tl-box">
+            <div class="ev">🌙 晚餐</div>
+            <div class="desc">大家圍坐一起，享用認領家庭準備的豐盛晚餐</div>
+            <span class="tag t-meal">🍽️ 晚餐</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">20:00</div>
+          <div class="tl-box">
+            <div class="ev">夜間活動</div>
+            <div class="desc">烤棉花糖、點心時光、星空觀察、夜間遊戲</div>
+            <span class="tag t-night">⭐ 夜間活動</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">22:30</div>
+          <div class="tl-box">
+            <div class="ev">就寢 🌙</div>
+            <div class="desc">（小孩睡著之後，大人可以繼續聊😄）</div>
+            <span class="tag t-free">💤 就寢</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="tl-day-hd">🌤️ Day 2 — 8月23日（日）</div>
+      <div class="tl-items">
+        <div class="tl-item">
+          <div class="tl-time">07:30</div>
+          <div class="tl-box">
+            <div class="ev">早餐備料</div>
+            <div class="desc">負責家庭準備，山中清晨格外清新</div>
+            <span class="tag t-meal">🍳 認領餐</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">08:30</div>
+          <div class="tl-box">
+            <div class="ev">☀️ 早餐</div>
+            <div class="desc">伴著山景享用早餐，開啟美好的第二天</div>
+            <span class="tag t-meal">🥞 早餐</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">10:00</div>
+          <div class="tl-box">
+            <div class="ev">上午戶外活動</div>
+            <div class="desc">親子闖關、草地遊戲、自由活動、留下合照</div>
+            <span class="tag t-activity">🏃 活動時間</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:30</div>
+          <div class="tl-box">
+            <div class="ev">收拾整理</div>
+            <div class="desc">清潔場地、整理個人行李、確認裝備</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">12:00</div>
+          <div class="tl-box">
+            <div class="ev">🍱 午餐</div>
+            <div class="desc">最後一餐，由負責家庭準備，吃飽一起打掃</div>
+            <span class="tag t-meal">🍱 認領餐</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">13:30</div>
+          <div class="tl-box">
+            <div class="ev">🚗 退場・掰掰！</div>
+            <div class="desc">大合照留念，帶著滿滿美好回憶踏上歸途 🌿</div>
+            <span class="tag t-free">🏠 回家</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 戶外活動 -->
+  <section id="activities" class="alt">
+    <div class="container">
+      <h2 class="sec-title">🎯 戶外活動規劃</h2>
+      <div class="sec-rule"></div>
+      <div class="act-grid">
+        <div class="act-card">
+          <div class="ai">💦</div>
+          <h4>水槍大戰</h4>
+          <p>大人小孩都愛！夏日消暑首選，記得備好換洗衣物再開打</p>
+        </div>
+        <div class="act-card">
+          <div class="ai">🥏</div>
+          <h4>草地飛盤 ＆ 球類</h4>
+          <p>飛盤、排球、足球，在草地上盡情奔跑，揮灑汗水</p>
+        </div>
+        <div class="act-card">
+          <div class="ai">🎯</div>
+          <h4>親子闖關遊戲</h4>
+          <p>設計 4–5 個小關卡，大人小孩混合組隊挑戰，增進家庭感情</p>
+        </div>
+        <div class="act-card">
+          <div class="ai">🔥</div>
+          <h4>烤棉花糖</h4>
+          <p>夜晚圍著燈火，烤棉花糖夾餅乾，邊吃邊聊天說地</p>
+        </div>
+        <div class="act-card">
+          <div class="ai">🌟</div>
+          <h4>星空觀察</h4>
+          <p>遠離都市光害，帶著孩子一起數星星、認識星座</p>
+        </div>
+        <div class="act-card">
+          <div class="ai">🎨</div>
+          <h4>自然創作小站</h4>
+          <p>撿石頭彩繪、葉子拓印、自然素材 DIY，讓孩子盡情發揮</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 裝備清單 -->
+  <section id="equipment">
+    <div class="container">
+      <h2 class="sec-title">🎒 裝備清單</h2>
+      <div class="sec-rule"></div>
+
+      <div style="padding:13px 18px; background:var(--amber-light); border:1px solid var(--amber); border-left:4px solid var(--amber); border-radius:10px; font-size:.9rem; margin-bottom:22px;">
+        ℹ️ 以下為<strong>個人自備</strong>建議清單。「公共裝備」的認領請至下方填寫表單，避免重複攜帶。
+      </div>
+
+      <div class="eq-grid">
+        <div class="eq-cat">
+          <h4>👕 個人用品</h4>
+          <ul>
+            <li>換洗衣物 × 2 套</li>
+            <li>拖鞋 ／ 草地涼鞋</li>
+            <li>個人盥洗備品</li>
+            <li>毛巾 × 2</li>
+            <li>睡衣 ／ 薄長袖</li>
+            <li>薄外套（夜間涼）</li>
+          </ul>
+        </div>
+        <div class="eq-cat">
+          <h4>☀️ 防護用品</h4>
+          <ul>
+            <li>防曬乳 SPF50+</li>
+            <li>帽子</li>
+            <li>太陽眼鏡</li>
+            <li>雨衣 ／ 摺疊傘</li>
+            <li>防蚊液</li>
+          </ul>
+        </div>
+        <div class="eq-cat">
+          <h4>💊 醫藥備品</h4>
+          <ul>
+            <li>個人慢性病藥物</li>
+            <li>OK繃 ／ 個人急救</li>
+            <li>暈車藥（如需要）</li>
+            <li>兒童退燒藥</li>
+            <li>腸胃藥</li>
+          </ul>
+        </div>
+        <div class="eq-cat">
+          <h4>🔌 電子 ＆ 其他</h4>
+          <ul>
+            <li>手機充電線</li>
+            <li>行動電源</li>
+            <li>相機（留下回憶）</li>
+            <li>頭燈 ／ 手電筒</li>
+            <li>水壺（自備）</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 公共裝備 -->
+      <div style="margin-top: 30px;">
+        <h3 style="font-size:1.1rem; color:var(--green); margin-bottom:8px; font-weight:700;">
+          🏕️ 公共裝備（認領分擔）
+        </h3>
+        <p style="font-size:.87rem; color:var(--text-muted); margin-bottom:16px;">
+          以下裝備由各家庭認領攜帶，每項只需 1–2 個家庭負責即可，透過表單認領避免重複。
+        </p>
+        <div class="eq-grid">
+          <div class="eq-cat">
+            <h4>🪑 座椅 ＆ 休憩</h4>
+            <ul>
+              <li>折疊椅（每戶自備）</li>
+              <li>野餐墊 ／ 防水墊 × 大</li>
+              <li>遮陽傘</li>
+            </ul>
+          </div>
+          <div class="eq-cat">
+            <h4>🍳 餐食工具</h4>
+            <ul>
+              <li>保冷箱 ／ 冰桶</li>
+              <li>大型湯鍋</li>
+              <li>烤肉爐具組</li>
+              <li>棉花糖烤叉</li>
+              <li>砧板 ＆ 菜刀</li>
+            </ul>
+          </div>
+          <div class="eq-cat">
+            <h4>🎮 遊戲裝備</h4>
+            <ul>
+              <li>水槍 × 多把</li>
+              <li>飛盤</li>
+              <li>球類（排 ／ 足球）</li>
+              <li>闖關道具</li>
+            </ul>
+          </div>
+          <div class="eq-cat">
+            <h4>🔧 公共雜項</h4>
+            <ul>
+              <li>藍牙音響</li>
+              <li>延長線</li>
+              <li>公共急救包</li>
+              <li>大型垃圾袋</li>
+              <li>濕紙巾 ／ 廚房紙巾</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 餐食計畫 -->
+  <section id="meals" class="alt">
+    <div class="container">
+      <h2 class="sec-title">🍽️ 餐食計畫</h2>
+      <div class="sec-rule"></div>
+      <div style="padding:13px 18px; background:var(--amber-light); border:1px solid var(--amber); border-left:4px solid var(--amber); border-radius:10px; font-size:.9rem; margin-bottom:22px;">
+        🍴 共有 <strong>3 餐</strong>需要家庭認領負責：8/22 晚餐、8/23 早餐、8/23 午餐。<br>
+        建議每餐由 <strong>2–3 個家庭</strong>共同負責，分擔採買、備料與炊事。
+      </div>
+      <div class="meal-grid">
+        <div class="meal-card">
+          <div class="mh">
+            <span class="mi">🌙</span>
+            <div>
+              <h4>8/22（六）晚餐</h4>
+              <div class="mt">🕡 18:30 開動</div>
+            </div>
+          </div>
+          <div class="meal-suggestion">
+            💡 建議：BBQ 烤肉、火鍋、或各家帶一道拿手菜 Potluck 方式，約 35 人份
+          </div>
+          <div class="claim-status">負責家庭：<span class="badge-open">待認領</span></div>
+        </div>
+        <div class="meal-card">
+          <div class="mh">
+            <span class="mi">🌅</span>
+            <div>
+              <h4>8/23（日）早餐</h4>
+              <div class="mt">🕗 08:30 開動</div>
+            </div>
+          </div>
+          <div class="meal-suggestion">
+            💡 建議：土司 ＆ 抹醬、水果切盤、稀飯 ／ 熱湯，輕鬆準備、簡單飽足
+          </div>
+          <div class="claim-status">負責家庭：<span class="badge-open">待認領</span></div>
+        </div>
+        <div class="meal-card">
+          <div class="mh">
+            <span class="mi">🍱</span>
+            <div>
+              <h4>8/23（日）午餐</h4>
+              <div class="mt">🕛 12:00 開動</div>
+            </div>
+          </div>
+          <div class="meal-suggestion">
+            💡 建議：麵食 ＆ 炒菜、或輕食便當，吃完一起打掃退場
+          </div>
+          <div class="claim-status">負責家庭：<span class="badge-open">待認領</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 認領調查 -->
+  <section id="survey">
+    <div class="container">
+      <h2 class="sec-title">📝 認領調查</h2>
+      <div class="sec-rule"></div>
+      <div class="survey-box">
+        <h3>🙋‍♀️ 請各家庭填寫認領表單！</h3>
+        <p class="sdesc">
+          每個家庭請填寫一份，選擇願意負責的餐食以及可攜帶的公共裝備<br>
+          約 <strong>5 分鐘</strong>完成 ｜ 截止日期：<strong>8 月 8 日（六）</strong>
+        </p>
+        <div class="survey-steps">
+          <div class="s-step">
+            <div class="sn">🏠</div>
+            <div class="sl">填寫家庭資訊<br>出席人數</div>
+          </div>
+          <div class="s-step">
+            <div class="sn">🍽️</div>
+            <div class="sl">認領負責<br>哪一餐</div>
+          </div>
+          <div class="s-step">
+            <div class="sn">🎒</div>
+            <div class="sl">認領公共<br>裝備清單</div>
+          </div>
+          <div class="s-step">
+            <div class="sn">✅</div>
+            <div class="sl">送出確認</div>
+          </div>
+        </div>
+        <a href="GOOGLE_FORM_LINK_HERE" class="btn-survey" target="_blank">
+          📋 前往認領表單（Google Forms）
+        </a>
+        <p class="survey-note">⚠️ 表單連結即將更新，主辦人確認後會通知大家</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 注意事項 -->
+  <section id="notes" class="alt">
+    <div class="container">
+      <h2 class="sec-title">📌 注意事項</h2>
+      <div class="sec-rule"></div>
+      <div class="notice">
+        <div class="notice-item ni-green">
+          <span>✅</span>
+          <div><strong>請事先確認</strong>每個家庭的成員人數、飲食禁忌或過敏（在表單備註欄填寫）</div>
+        </div>
+        <div class="notice-item ni-blue">
+          <span>🌧️</span>
+          <div><strong>天氣備案</strong>：如遇大雨，戶外活動改至室內場地進行，請攜帶雨具備用</div>
+        </div>
+        <div class="notice-item ni-yellow">
+          <span>🚗</span>
+          <div><strong>停車</strong>：場地有停車場，<strong>建議共乘</strong>以節省車位，並減少碳排放</div>
+        </div>
+        <div class="notice-item ni-yellow">
+          <span>📍</span>
+          <div><strong>導航</strong>：新竹縣北埔鄉水磜村4鄰麻布樹排50號，
+            建議提前查好路線，山區訊號可能較弱</div>
+        </div>
+        <div class="notice-item ni-red">
+          <span>🧹</span>
+          <div><strong>環保公約</strong>：帶走自己製造的垃圾，讓場地保持整潔，感謝每一個家庭的配合</div>
+        </div>
+        <div class="notice-item ni-blue">
+          <span>🧒</span>
+          <div><strong>兒童安全</strong>：活動區域請家長隨時留意孩子的安全，尤其夜間活動請攜帶頭燈</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">🌿🏕️🌿</div>
+  <p><strong>2026 夏日家庭露營</strong></p>
+  <p>SRC 北埔印象民宿・露營車C區 ｜ 8月22日 ～ 8月23日</p>
+  <p style="margin-top: 10px;">有任何問題，請聯絡主辦人 💬</p>
+</footer>
+
+</body>
+</html>
